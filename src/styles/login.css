@@ -1,0 +1,28 @@
+.loginPageWrapper {
+  height: 100vh;
+}
+.loginPageImage {
+  width: 400px;
+}
+
+.googleLogin {
+  display: flex;
+  gap: 20px;
+  border: 1px solid gray;
+  padding: 8px 4rem;
+  align-items: center;
+  font-size: 1.4rem;
+  border-radius: 30px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: box-shadow 1s ease-in, border-color 0.3s ease-in;
+}
+
+.googleLogin:hover {
+  box-shadow: 0 0 8px 0 var(--red70);
+  border-color: var(--red70);
+}
+
+.googleLogin img {
+  width: 30px;
+}

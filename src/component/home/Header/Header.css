@@ -1,0 +1,49 @@
+header {
+  height: 500px;
+  background-image: url("../../../images/header-bg.jpg");
+  background-position: bottom;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  position: relative;
+  color: #fff;
+  z-index: 0;
+}
+
+header::after {
+  content: "";
+  background-color: rgb(14, 13, 19);
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  opacity: 0.7;
+  z-index: -1;
+}
+
+.header-main-content {
+  padding-left: 2rem;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.header-main-content h1 {
+  color: var(--yellow);
+  font-weight: 800;
+  font-size: 5rem;
+  margin-bottom: 0;
+}
+
+.header-main-content h3 {
+  margin-top: 0;
+  letter-spacing: 2px;
+  font-weight: 800;
+  color: #fff;
+  font-size: 3rem;
+}
+
+.header-main-content p {
+  width: 30%;
+}

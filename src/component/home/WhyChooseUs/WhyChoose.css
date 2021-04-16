@@ -1,0 +1,11 @@
+.left {
+  width: 100px;
+  height: 50px;
+  display: flex;
+  color: #fff;
+  font-size: 1rem;
+  align-items: center;
+  border-radius: 100%;
+  justify-content: center;
+  background: linear-gradient(45deg, var(--red), var(--red70));
+}

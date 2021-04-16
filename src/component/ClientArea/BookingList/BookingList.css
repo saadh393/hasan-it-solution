@@ -1,0 +1,32 @@
+.bookingList-card {
+  padding: 1.5rem;
+}
+
+.bookingList-card img {
+  width: 60px;
+  border-radius: 100%;
+}
+
+.bookingList-card h5 {
+  font-weight: 700;
+  color: #434343;
+  margin-top: 1.4rem;
+}
+.bookingList-card p {
+  margin: 0;
+  text-align: justify;
+}
+
+.statusBtn {
+  padding: 0.5rem 1rem;
+  border-radius: 3px;
+}
+.pending {
+  background-color: hsl(354, 100%, 93%);
+  color: var(--red);
+}
+
+.done {
+  background-color: hsl(157, 100%, 93%);
+  color: hsl(157, 77%, 47%);
+}
