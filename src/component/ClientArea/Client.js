@@ -28,6 +28,12 @@ const Client = () => {
             </Elements>
           </Route>
 
+          <Route path="/dashboard/book/">
+            <Elements stripe={stripePromise}>
+              <Book />
+            </Elements>
+          </Route>
+
           <Route path="/dashboard/bookinglist/">
             <BookingList />
           </Route>

@@ -3,8 +3,7 @@
 }
 
 .bookingList-card img {
-  width: 60px;
-  border-radius: 100%;
+  width: 100%;
 }
 
 .bookingList-card h5 {
@@ -20,6 +19,9 @@
 .statusBtn {
   padding: 0.5rem 1rem;
   border-radius: 3px;
+  position: absolute;
+  top: 30px;
+  right: 0;
 }
 .pending {
   background-color: hsl(354, 100%, 93%);
@@ -29,4 +31,13 @@
 .done {
   background-color: hsl(157, 100%, 93%);
   color: hsl(157, 77%, 47%);
+  border: 3px solid hsl(157, 77%, 47%);
+  border-right: none;
+}
+
+.loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%);
 }

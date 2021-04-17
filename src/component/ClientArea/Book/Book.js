@@ -26,11 +26,14 @@ const Book = () => {
   const stripe = useStripe();
   const elements = useElements();
   const [user, setUser] = useContext(userDataContext);
-  const { serviceId } = useParams();
+  let { serviceId } = useParams();
+  const [status, setStatus] = useState("");
   const [selectedService, setService] = useState("");
+  serviceId = typeof serviceId === "string" ? serviceId : user.availableServices[0]._id;
 
   const onSubmit = async (e) => {
     e.preventDefault();
+    setStatus("Your Payment is Processing...");
     if (!stripe || !elements) {
       return;
     }
@@ -45,34 +48,33 @@ const Book = () => {
       console.log("[error]", error);
     } else {
       console.log("[PaymentMethod]", paymentMethod);
+      setStatus("Success...");
       const purchaseArr = [...user.purchases];
 
       const serviceName =
         selectedService || user.availableServices.filter((service) => service._id === serviceId)[0].serviceTitle;
-      purchaseArr.push({
-        serviceId,
-        serviceName,
-        paymentId: paymentMethod.id,
-        action: "Pending",
-      });
 
+      const purchasedService = user.availableServices.filter((service) => service.serviceTitle === serviceName)[0];
+      purchasedService.paymentId = paymentMethod.id;
+      purchasedService.action = "Pending";
+      purchaseArr.push(purchasedService);
+
+      // Filtering User Data
       const userData = { ...user };
-      userData.availableServices = userData.availableServices.map((services) => {
-        delete services.imageDatta;
-        return services;
-      });
+      // delete userData.availableServices;
+
       const dataToStore = {
         ...userData,
         purchases: purchaseArr,
       };
 
-      console.log("body", dataToStore);
       axios.post("http://localhost:4000/purchase", dataToStore).then(({ data }) => {
         if (data) {
-          // e.target.reset();
-          // cardElement.clear();
+          e.target.reset();
+          cardElement.clear();
           setUser(dataToStore);
-          console.log(data);
+          setStatus("");
+          console.log("Response : ", data);
         }
       });
     }
@@ -91,17 +93,8 @@ const Book = () => {
       <section>
         <h2> Booking Area </h2>
 
-        {/* Test */}
-        <form onSubmit={sub}>
-          <input type="text" {...register("asdfasf")} />
-          <input type="submit" />
-        </form>
-        {/* Test */}
-
         <Card className="p-4 mt-3">
           <div>
-            {"//handleSubmit(onSubmit) "}
-
             <form onSubmit={onSubmit} className="d-flex flex-column" style={{ gap: "20px" }}>
               <div>
                 <h6>Full Name</h6>
@@ -167,6 +160,7 @@ const Book = () => {
                   },
                 }}
               />
+              {status}
               <button type="submit" disabled={!stripe}>
                 Submit
               </button>

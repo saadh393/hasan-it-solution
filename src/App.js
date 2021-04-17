@@ -17,6 +17,7 @@ function App() {
   return (
     <>
       <userDataContext.Provider value={[user, setUser]}>
+        <button onClick={() => console.log(user)}>Log State</button>
         <BrowserRouter>
           <Switch>
             <Route exact path="/">

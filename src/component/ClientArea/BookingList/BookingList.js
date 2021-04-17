@@ -20,8 +20,9 @@ const BookingList = () => {
   const [booklist, setBookList] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:4000/booklist", { email: user.email }).then(({ data }) => {
-      setBookList(data);
+    axios.post("http://localhost:4000/booklist", { email: user.email }).then(({ data }) => {
+      console.log(data);
+      setBookList(data.purchases);
     });
   }, []);
 
@@ -29,15 +30,17 @@ const BookingList = () => {
     <>
       <section>
         <h2>Your Bookings </h2>
-        <Row>
-          {/* <CardBooking /> */}
-          {booklist.map((booking) => (
-            <CardBooking data={booking} />
-          ))}
-        </Row>
+        <Row>{booklist.length ? booklist.map((booking) => <CardBooking data={booking} />) : <Loading />}</Row>
       </section>
     </>
   );
 };
 
+const Loading = () => (
+  <div className="loader">
+    <div className="spinner-border" style={{ width: "3rem", height: " 3rem", color: "red" }} role="status">
+      <span className="sr-only">Loading...</span>
+    </div>
+  </div>
+);
 export default BookingList;

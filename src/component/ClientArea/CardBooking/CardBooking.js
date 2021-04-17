@@ -15,15 +15,10 @@ const CardBooking = ({ data }) => {
       <Col md={5}>
         <Card className="shadow-sm mt-4">
           <div className="bookingList-card">
-            <div className="d-flex justify-content-between align-items-center ">
-              <img src={img} />
-              <div className="statusBtn done">Pending</div>
-            </div>
-            <h5> Anti Aged Face Treatment</h5>
-            <p>
-              Asynchronous functions are a good and bad thing in JavaScript.Asynchronous functions are a good and bad
-              thing in JavaScript.Asynchronous functions are a good and bad thing in JavaScript.
-            </p>
+            <img src={`data:image/jpeg;base64,${data.imageDatta.img}`} />
+            <div className="statusBtn done">{data.action}</div>
+            <h5>{data.serviceTitle}</h5>
+            <p>{data.serviceDescription.slice(0, 180) + "..."}</p>
           </div>
         </Card>
       </Col>

@@ -31,7 +31,7 @@ const Login = () => {
       axios.post("http://localhost:4000/storeUserInfo", userInfo).then(({ data }) => {
         console.log(data);
         data && setUser(userInfo);
-        localStorage.setItem("cookie", JSON.stringify(userInfo));
+        // localStorage.setItem("cookie", JSON.stringify(userInfo));
       });
     });
   };

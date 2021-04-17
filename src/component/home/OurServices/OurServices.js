@@ -20,10 +20,10 @@ const OurServices = () => {
 
   useEffect(() => {
     axios.get("http://localhost:4000/services").then(({ data }) => {
-      const cookie = JSON.parse(localStorage.getItem("cookie"));
-      setUser({ ...user, ...cookie, availableServices: data });
+      // const cookie = JSON.parse(localStorage.getItem("cookie"));
       setServices(data);
-      console.log(user);
+      setUser({ ...user, availableServices: data });
+      console.log(data);
     });
   }, []);
 
