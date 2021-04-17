@@ -1,5 +1,4 @@
 .sidebar {
-  height: 100vh;
   background-color: var(--red70);
 }
 .sidebar a {

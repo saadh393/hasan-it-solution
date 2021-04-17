@@ -13,7 +13,6 @@ import { userDataContext } from "../../../App";
 
 const ServiesCard = ({ data }) => {
   const [user, setUser] = useContext(userDataContext);
-
   return (
     <>
       <Col>
@@ -23,7 +22,10 @@ const ServiesCard = ({ data }) => {
               <img src={`data:image/jpeg;base64,${data.imageDatta.img}`} className="service-thubmnail" />
             </div>
             <div className="my-5 pl-2 pr-2">
-              <Link to={`/dashboard/book/${data._id}`} onClick={() => setUser(data.serviceTitle)}>
+              <Link
+                to={`/dashboard/book/${data._id}`}
+                // onClick={() => setUser({ ...user, selectedService: data.serviceTitle })}
+              >
                 <h3> {data.serviceTitle} </h3>
               </Link>
               <p>{data.serviceDescription.slice(0, 180) + "..."}</p>

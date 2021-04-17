@@ -13,6 +13,7 @@ export const userDataContext = createContext();
 
 function App() {
   const [user, setUser] = useState({});
+
   return (
     <>
       <userDataContext.Provider value={[user, setUser]}>

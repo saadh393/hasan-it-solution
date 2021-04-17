@@ -25,11 +25,13 @@ const Login = () => {
         name: user.displayName,
         email: user.email,
         photo: user.photoURL,
+        purchases: [],
       };
 
       axios.post("http://localhost:4000/storeUserInfo", userInfo).then(({ data }) => {
         console.log(data);
         data && setUser(userInfo);
+        localStorage.setItem("cookie", JSON.stringify(userInfo));
       });
     });
   };
@@ -40,12 +42,11 @@ const Login = () => {
         <Nav />
       </Container>
       <section className="loginPageWrapper d-flex flex-column justify-content-center align-items-center">
-        <img src={login} className="loginPageImage" />
+        <img src={login} className="loginPageImage" alt="" />
         <div className="googleLogin " onClick={handleSignIn}>
           <img src={google} />
           Login with Google
         </div>
-        <button onClick={() => console.log(user)}>Chek</button>
       </section>
     </>
   );

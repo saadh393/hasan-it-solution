@@ -9,7 +9,7 @@
 import { Card, Col } from "react-bootstrap";
 import img from "../../../images/avater.png";
 
-const CardBooking = () => {
+const CardBooking = ({ data }) => {
   return (
     <>
       <Col md={5}>

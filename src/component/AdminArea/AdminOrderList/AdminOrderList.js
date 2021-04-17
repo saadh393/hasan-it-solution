@@ -6,9 +6,28 @@
 */
 
 /*  🔥 React Dependencies 🔥 */
+import axios from "axios";
+import { useEffect, useState } from "react";
 import { Card, Table } from "react-bootstrap";
 
 const AdminOrderList = () => {
+  const [orderList, setOrderList] = useState([]);
+  useEffect(() => {
+    axios.get("http://localhost:4000/allClients").then(({ data }) => {
+      console.log(data);
+      const orders = {};
+      data.map((order) => {
+        // if (order.purchases.length) {
+        //   orders.serviceName = order.serviceName;
+        //   orders.email = data.email;
+        //   orders.name = order.name;
+        //   orders.action = data.action;
+        //   setOrderList([...orderList, orders]);
+        // }
+      });
+    });
+  }, []);
+
   return (
     <>
       <h3>Order List </h3>

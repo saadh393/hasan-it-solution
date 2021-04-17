@@ -30,11 +30,11 @@ const Footer = () => {
             <Col md={4} className="pl-5">
               <h4>Menu</h4>
               <ul>
-                <Link>Home</Link>
-                <Link>Services</Link>
-                <Link>Our Team</Link>
-                <Link>Admin</Link>
-                <Link>Login</Link>
+                <Link to="/">Home</Link>
+                <Link to="/">Services</Link>
+                <Link to="/">Our Team</Link>
+                <Link to="/dashboard">Admin</Link>
+                <Link to="/login">Login</Link>
               </ul>
             </Col>
             <Col md={4}>

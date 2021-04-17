@@ -14,8 +14,8 @@ import Sidebar from "../component/Dashboard/Sidebar/Sidebar";
 const Dashboard = () => {
   return (
     <>
-      <Row style={{ margin: "0px" }}>
-        <Col md={3} style={{ padding: "0px" }}>
+      <Row style={{ margin: "0px", height: "100vh" }}>
+        <Col md={3} style={{ padding: "0px" }} className="sidebar">
           <Sidebar />
         </Col>
         <Col md={9} style={{ background: "#f4f7fc" }}>
