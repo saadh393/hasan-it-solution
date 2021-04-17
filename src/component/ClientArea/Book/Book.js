@@ -29,7 +29,8 @@ const Book = () => {
   let { serviceId } = useParams();
   const [status, setStatus] = useState("");
   const [selectedService, setService] = useState("");
-  serviceId = typeof serviceId === "string" ? serviceId : user.availableServices[0]._id;
+  const ServicesListFromCache = JSON.parse(localStorage.getItem("services"));
+  serviceId = typeof serviceId === "string" ? serviceId : ServicesListFromCache[0]._id;
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -52,9 +53,9 @@ const Book = () => {
       const purchaseArr = [...user.purchases];
 
       const serviceName =
-        selectedService || user.availableServices.filter((service) => service._id === serviceId)[0].serviceTitle;
+        selectedService || ServicesListFromCache.filter((service) => service._id === serviceId)[0].serviceTitle;
 
-      const purchasedService = user.availableServices.filter((service) => service.serviceTitle === serviceName)[0];
+      const purchasedService = ServicesListFromCache.filter((service) => service.serviceTitle === serviceName)[0];
       purchasedService.paymentId = paymentMethod.id;
       purchasedService.action = "Pending";
       purchaseArr.push(purchasedService);
@@ -68,7 +69,7 @@ const Book = () => {
         purchases: purchaseArr,
       };
 
-      axios.post("http://localhost:4000/purchase", dataToStore).then(({ data }) => {
+      axios.post("https://frozen-sierra-16673.herokuapp.com/purchase", dataToStore).then(({ data }) => {
         if (data) {
           e.target.reset();
           cardElement.clear();
@@ -124,11 +125,11 @@ const Book = () => {
                 <h6> Service You are going to Purchase</h6>
                 {/* <input type="text" className="p-1" value={user.selectedService} disabled {...register("service")} /> */}
                 <select onChange={(e) => setService(e.target.value)}>
-                  {user.availableServices.map((service) => {
+                  {ServicesListFromCache.map((service) => {
                     const ifSelected = serviceId === service._id ? true : false;
 
                     return (
-                      <option selected={ifSelected} value={service.serviceTitle}>
+                      <option selected={ifSelected} key={service._id} value={service.serviceTitle}>
                         {service.serviceTitle}
                       </option>
                     );

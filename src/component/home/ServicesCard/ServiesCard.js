@@ -15,7 +15,7 @@ const ServiesCard = ({ data }) => {
   const [user, setUser] = useContext(userDataContext);
   return (
     <>
-      <Col>
+      <Col md={4} sm={12} className="mt-4">
         <Card style={{ height: "460px" }}>
           <div className="serviceCardWrapper">
             <div className="service-icon-holder">

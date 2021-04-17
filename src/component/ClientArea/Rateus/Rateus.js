@@ -5,27 +5,30 @@
 ⌚ Date : 16/ April/ 2021 
 */
 
+/*  🔥 React Dependencies 🔥 */
 import axios from "axios";
+import { useState } from "react";
 import { useContext } from "react";
 import { userDataContext } from "../../../App";
 
-/*  🔥 React Dependencies 🔥 */
-
 const Rateus = () => {
   const [user] = useContext(userDataContext);
+  const [status, setStatus] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setStatus(true);
     const feedback = e.target.feedback.value;
     axios
-      .post("http://localhost:4000/feedback", {
+      .post("https://frozen-sierra-16673.herokuapp.com/feedback", {
         username: user.name,
         email: user.email,
         photo: user.photo,
         feedback,
       })
       .then(({ data }) => {
-        e.target.rest();
+        e.target.reset();
+        setStatus(false);
       });
   };
 
@@ -38,6 +41,12 @@ const Rateus = () => {
         <br />
         <label>Your Feedback</label>
         <textarea name="feedback" className="form-control" required></textarea>
+
+        {status && (
+          <div class="spinner-border text-info" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+        )}
         <button type="submit" className="mt-4">
           Submit
         </button>

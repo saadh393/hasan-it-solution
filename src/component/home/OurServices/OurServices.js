@@ -15,12 +15,16 @@ import ServiesCard from "../ServicesCard/ServiesCard";
 import "./Services.css";
 
 const OurServices = () => {
-  const [service, setServices] = useState([]);
   const [user, setUser] = useContext(userDataContext);
+  const cache = JSON.parse(localStorage.getItem("services"));
+  const cachedServices = cache ? cache : [];
+  const [service, setServices] = useState(cachedServices);
+  console.log(cachedServices);
 
   useEffect(() => {
-    axios.get("http://localhost:4000/services").then(({ data }) => {
-      // const cookie = JSON.parse(localStorage.getItem("cookie"));
+    axios.get("https://frozen-sierra-16673.herokuapp.com/services").then(({ data }) => {
+      localStorage.clear();
+      localStorage.setItem("services", JSON.stringify(data));
       setServices(data);
       setUser({ ...user, availableServices: data });
       console.log(data);
@@ -33,10 +37,7 @@ const OurServices = () => {
       <p className="text-sub">Areas What We Serve</p>
 
       <Row className="mt-5">
-        {service.length && service.map((data, index) => <ServiesCard key={index} data={data} />)}
-        {/* <ServiesCard />
-        <ServiesCard />
-        <ServiesCard /> */}
+        {service ? service.map((data, index) => <ServiesCard key={index} data={data} />) : "Loading... "}
       </Row>
     </section>
   );

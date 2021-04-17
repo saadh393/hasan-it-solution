@@ -8,6 +8,7 @@ import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
 import { createContext } from "react";
 import { useState } from "react";
+import PrivateRoute from "./component/Global/PrivateRoute/PrivateRoute";
 
 export const userDataContext = createContext();
 
@@ -17,16 +18,16 @@ function App() {
   return (
     <>
       <userDataContext.Provider value={[user, setUser]}>
-        <button onClick={() => console.log(user)}>Log State</button>
+        {/* <button onClick={() => console.log(user)}>Log State</button> */}
         <BrowserRouter>
           <Switch>
             <Route exact path="/">
               <Home />
             </Route>
 
-            <Route path="/dashboard">
+            <PrivateRoute path="/dashboard">
               <Dashboard />
-            </Route>
+            </PrivateRoute>
 
             <Route path="/login">
               <Login />

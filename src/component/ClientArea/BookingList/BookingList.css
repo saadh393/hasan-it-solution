@@ -35,6 +35,20 @@
   border-right: none;
 }
 
+.on_going {
+  background-color: hsl(51, 96%, 81%);
+  color: hsl(22, 93%, 49%);
+  border: 3px solid hsl(54, 84%, 53%);
+  border-right: none;
+}
+
+.pending {
+  background-color: hsl(157, 100%, 93%);
+  color: hsl(214, 77%, 47%);
+  border: 3px solid hsl(229, 77%, 47%);
+  border-right: none;
+}
+
 .loader {
   position: absolute;
   left: 50%;

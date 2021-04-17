@@ -35,7 +35,7 @@ const AddServices = () => {
     formData.append("serviceDescription", service.serviceDescription);
 
     axios
-      .post("http://localhost:4000/addService", formData, {
+      .post("https://frozen-sierra-16673.herokuapp.com/addService", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -52,6 +52,7 @@ const AddServices = () => {
   return (
     <>
       <h3>Add New Service</h3>
+      <small>Home page will show last 3 Services at time</small>
       <Card className="p-4 shadow-sm">
         <form onSubmit={handleSubmit}>
           <Row>

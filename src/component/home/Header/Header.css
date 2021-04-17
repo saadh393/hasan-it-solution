@@ -10,6 +10,10 @@ header {
   z-index: 0;
 }
 
+header .navbar-brand {
+  color: #fff !important;
+}
+
 header::after {
   content: "";
   background-color: rgb(14, 13, 19);
@@ -46,4 +50,10 @@ header::after {
 
 .header-main-content p {
   width: 30%;
+}
+
+@media only screen and (max-width: 600px) {
+  .header-main-content p {
+    width: 100%;
+  }
 }

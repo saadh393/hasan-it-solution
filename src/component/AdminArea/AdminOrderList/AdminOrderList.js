@@ -12,44 +12,66 @@ import { Card, Table } from "react-bootstrap";
 
 const AdminOrderList = () => {
   const [orderList, setOrderList] = useState([]);
-  useEffect(() => {
-    axios.get("http://localhost:4000/allClients").then(({ data }) => {
+  const [isLoading, setisLoading] = useState("");
+
+  const handleActionChange = (e, email, id) => {
+    const action = e.target.value;
+    setisLoading(true);
+    axios.put("https://frozen-sierra-16673.herokuapp.com/updateAction", { action, email, id }).then(({ data }) => {
       console.log(data);
-      const orders = {};
+      setisLoading(false);
+    });
+  };
+
+  useEffect(() => {
+    axios.get("https://frozen-sierra-16673.herokuapp.com/allClients").then(({ data }) => {
+      // console.log(data);
+
+      let filteredList = {};
+      const temArr = [];
       data.map((order) => {
-        // if (order.purchases.length) {
-        //   orders.serviceName = order.serviceName;
-        //   orders.email = data.email;
-        //   orders.name = order.name;
-        //   orders.action = data.action;
-        //   setOrderList([...orderList, orders]);
-        // }
+        if (order.purchases) {
+          order.purchases.forEach((eachOrder) => {
+            filteredList = {
+              action: eachOrder.action,
+              serviceTitle: eachOrder.serviceTitle,
+              _id: eachOrder._id,
+              email: order.email,
+              name: order.name,
+            };
+            temArr.push(filteredList);
+          });
+        }
       });
+
+      setOrderList(temArr);
     });
   }, []);
 
   return (
     <>
-      <h3>Order List </h3>
+      <h3>
+        Order List{" "}
+        {isLoading && (
+          <div class="spinner-border text-danger spinner-border-sm ml-3 mb-2" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+        )}
+      </h3>
       <Card className="p-4">
         <div>
-          <Table>
-            <TableHead />
-            <tbody>
-              <TableRow
-                data={{ name: "Saad Hasan", email: "saadh393@gmail.com", service: "Hack Nasa", status: "Done" }}
-              />
-              <TableRow
-                data={{ name: "Saad Hasan", email: "saadh393@gmail.com", service: "Hack Nasa", status: "Done" }}
-              />
-              <TableRow
-                data={{ name: "Saad Hasan", email: "saadh393@gmail.com", service: "Hack Nasa", status: "Done" }}
-              />
-              <TableRow
-                data={{ name: "Saad Hasan", email: "saadh393@gmail.com", service: "Hack Nasa", status: "Done" }}
-              />
-            </tbody>
-          </Table>
+          {orderList.length ? (
+            <Table>
+              <TableHead />
+              <tbody>
+                {orderList.map((data, index) => (
+                  <TableRow data={data} key={index} handle={handleActionChange} />
+                ))}
+              </tbody>
+            </Table>
+          ) : (
+            "Loading..."
+          )}
         </div>
       </Card>
     </>
@@ -67,21 +89,27 @@ const TableHead = () => (
   </thead>
 );
 
-const TableRow = ({ data }) => (
-  <tr>
-    <td>{data.name}</td>
-    <td>{data.email}</td>
-    <td>{data.service}</td>
-    <td>
-      <select className="form-select">
-        <option>Actions</option>
-        <option value="Pending">Pending</option>
-        <option value="Done">Done</option>
-        <option value="On Going">Actions</option>
-      </select>
-    </td>
-    {/* @TODO Pending, Done, onGoing */}
-  </tr>
-);
+const TableRow = ({ data, handle }) => {
+  return (
+    <tr>
+      <td>{data.name}</td>
+      <td>{data.email}</td>
+      <td>{data.serviceTitle}</td>
+      <td>
+        <select className="form-select" onChange={(e) => handle(e, data.email, data._id)}>
+          {["Pending", "Done", "On Going"].map((action) => {
+            const ifSelected = data.action.toLowerCase() === action.toLowerCase() ? true : false;
+            return (
+              <option selected={ifSelected} value={action}>
+                {action}
+              </option>
+            );
+          })}
+        </select>
+      </td>
+      {/* @TODO Pending, Done, onGoing */}
+    </tr>
+  );
+};
 
 export default AdminOrderList;

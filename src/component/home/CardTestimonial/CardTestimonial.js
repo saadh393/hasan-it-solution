@@ -10,7 +10,7 @@ import { Card, Col } from "react-bootstrap";
 import image from "../../../images/avater.png";
 import quote from "../../../images/quote.svg";
 
-const CardTestimonial = () => {
+const CardTestimonial = ({ data }) => {
   return (
     <>
       <Col>
@@ -18,13 +18,10 @@ const CardTestimonial = () => {
           <div className="testimonial-quote">
             <img src={quote} />
           </div>
-          <p>
-            Great support, like i have never seen before. Thanks to the support team, they are very helpfull. This
-            company provide customers great solution, that makes them best.
-          </p>
-          <img src={image} className="testimonial-author" />
-          <h4>Thomas</h4>
-          <small>Engineer, Goolge</small>
+          <p>{data.feedback}</p>
+          <img src={data.photo} className="testimonial-author" />
+          <h4>{data.username}</h4>
+          <small>{data.email}</small>
         </Card>
       </Col>
     </>

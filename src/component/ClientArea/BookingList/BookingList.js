@@ -20,7 +20,7 @@ const BookingList = () => {
   const [booklist, setBookList] = useState([]);
 
   useEffect(() => {
-    axios.post("http://localhost:4000/booklist", { email: user.email }).then(({ data }) => {
+    axios.post("https://frozen-sierra-16673.herokuapp.com/booklist", { email: user.email }).then(({ data }) => {
       console.log(data);
       setBookList(data.purchases);
     });
@@ -30,7 +30,9 @@ const BookingList = () => {
     <>
       <section>
         <h2>Your Bookings </h2>
-        <Row>{booklist.length ? booklist.map((booking) => <CardBooking data={booking} />) : <Loading />}</Row>
+        <Row>
+          {booklist.length ? booklist.map((booking, index) => <CardBooking data={booking} key={index} />) : <Loading />}
+        </Row>
       </section>
     </>
   );

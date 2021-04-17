@@ -21,17 +21,13 @@ const Sidebar = () => {
       <div>
         <div className="branding">
           <Link to="/">
-            <img src={user.photo} />
-            <h3>{user.name}</h3>
+            <img src={user.photo} style={{ borderRadius: "100%", border: "3px sold yellow" }} />
+            <h3 className="mt-4">{user.name}</h3>
+            <h6>Acting As {user.role}</h6>
           </Link>
-          {/* @TODO Logout Icon */}
-          <h6> Logout </h6>
         </div>
 
-        <div className="sidebar-menu">
-          <ClientMenu />
-          {/* <AdminMenus /> */}
-        </div>
+        <div className="sidebar-menu">{user.role === "admin" ? <AdminMenus /> : <ClientMenu />}</div>
       </div>
     </>
   );

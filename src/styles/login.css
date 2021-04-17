@@ -2,20 +2,20 @@
   height: 100vh;
 }
 .loginPageImage {
-  width: 400px;
+  width: 300px;
 }
 
 .googleLogin {
   display: flex;
   gap: 20px;
   border: 1px solid gray;
-  padding: 8px 4rem;
+  padding: 5px 3rem;
   align-items: center;
-  font-size: 1.4rem;
+  font-size: 1rem;
   border-radius: 30px;
   font-weight: 500;
   cursor: pointer;
-  transition: box-shadow 1s ease-in, border-color 0.3s ease-in;
+  transition: box-shadow 0.7s ease-in, border-color 0.3s ease-in;
 }
 
 .googleLogin:hover {

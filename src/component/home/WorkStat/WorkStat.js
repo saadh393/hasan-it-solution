@@ -11,7 +11,7 @@ import "./WorkStat.css";
 
 const WorkStat = () => {
   return (
-    <section>
+    <section className="mt-5 py-5">
       <Row>
         <Col className="d-flex justify-content-end">
           <div className="circle-wrapper">

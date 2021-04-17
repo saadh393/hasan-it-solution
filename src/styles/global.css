@@ -70,3 +70,10 @@ button:hover {
 .error {
   color: hsl(352, 100%, 60%);
 }
+footer {
+  height: 100%;
+}
+
+.nav-item a {
+  color: #fff !important;
+}

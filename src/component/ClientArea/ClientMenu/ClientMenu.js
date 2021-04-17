@@ -12,9 +12,9 @@ const ClientMenu = () => {
   return (
     <>
       <ul>
-        <Link to="/dashboard/book/">Book</Link>
-        <Link to="/dashboard/bookinglist/">Booking List</Link>
-        <Link to="/dashboard/review/">Review</Link>
+        <Link to="/dashboard/book/">Purchase</Link>
+        <Link to="/dashboard/bookinglist/">Your Purchase List</Link>
+        <Link to="/dashboard/review/">Rate Us</Link>
       </ul>
     </>
   );

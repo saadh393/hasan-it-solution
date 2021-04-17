@@ -100,3 +100,13 @@
   margin-top: 0;
   color: #434343;
 }
+
+@media only screen and (max-width: 600px) {
+  .main-circle::before {
+    display: none;
+  }
+
+  .main-circle::after {
+    display: none;
+  }
+}
