@@ -58,7 +58,7 @@ const AdminOrderList = () => {
           </div>
         )}
       </h3>
-      <Card className="p-4">
+      <Card className="adminOrder-card">
         <div>
           {orderList.length ? (
             <Table>

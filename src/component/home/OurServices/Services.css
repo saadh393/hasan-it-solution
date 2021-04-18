@@ -30,3 +30,11 @@
   color: var(--yellow);
   text-decoration: none;
 }
+
+/* Animation */
+.serviceCardWrapper:hover .service-icon-holder img {
+  transform: scale(1.1);
+  transition: transform 0.4s ease;
+  border-radius: 5px;
+  border: 3px solid var(--yellow);
+}

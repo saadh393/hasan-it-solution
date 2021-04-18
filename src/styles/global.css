@@ -77,3 +77,7 @@ footer {
 .nav-item a {
   color: #fff !important;
 }
+
+.adminOrder-card {
+  padding: 2rem;
+}
