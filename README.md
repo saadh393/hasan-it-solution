@@ -1,6 +1,6 @@
 # Hasan IT Solution
 
-Hasan IT Solution is a simple ecommerce Site. After Login though your google account You can purchage products
+It is a design, development and service selling company website project. Developed with practice purpose only. There is a backend, anyone can login through google authentication system. He could manage services, Clients able to place his feedback and there are some more functionalities.
 
 Site Link : https://hasanitsolution.netlify.app/
 
@@ -8,5 +8,9 @@ Site Link : https://hasanitsolution.netlify.app/
 
 - React.js
 - Bootstrap
-- Firebase
+- Firebase Authentication
 - Mongo
+
+### Screenshort
+
+![](https://raw.githubusercontent.com/saadh393/hasan-it-solution/main/hasanITSolutions.jpg)
